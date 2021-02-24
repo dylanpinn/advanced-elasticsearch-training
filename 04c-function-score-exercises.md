@@ -16,7 +16,31 @@ GET /listings/_search
       },
       "score_mode": "sum",
       "functions": [
-        {...
+        {
+          "filter": {"match": { "product": "premier" }},
+          "weight": 30
+        },
+        {
+          "filter": {"match": { "product": "highlight" }},
+          "weight": 20
+        },
+        {
+          "filter": {"match": { "product": "standard" }},
+          "weight": 10
+        },
+        {
+          "linear": {
+            "price": {
+              "origin": 800,
+              "scale": 1000,
+              "decay": 0.5
+            }
+          }
+        }
+      ]
+    }
+  }
+}
 ```
 
 
