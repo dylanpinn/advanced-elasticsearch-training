@@ -66,3 +66,26 @@ more than 5 sales ordered by the number of sales descending.
 
 Use field collapsing to ensure that only one agent is returned per agency.
 Note: you should not need to change the index mapping. 
+
+```
+GET /agent/_search
+{
+  "query": {
+    "range": {
+      "sales": {
+        "gt": 5
+      }
+    }
+  },
+  "sort": [
+    {
+      "sales": {
+        "order": "desc"
+      }
+    }
+  ],
+  "collapse": {
+    "field": "agencyId"
+  }
+}
+```

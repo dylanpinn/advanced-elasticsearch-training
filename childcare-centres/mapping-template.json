@@ -4,6 +4,10 @@
     "properties": {
       "geocode": {
         "type": "geo_point"
+      },
+      "name": {
+        "type": "completion",
+        "analyzer": "standard"
       }
     }
   }

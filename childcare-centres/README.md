@@ -15,6 +15,45 @@ Now write a query to find child care centres within 1km of the Melbourne GPO
 NOTE:
 Childcare_Centres.csv is from https://data.melbourne.vic.gov.au/Assets-Infrastructure/Childcare-Centres/rdi4-j8zh
 
+```elasticsearch
+GET /childcare-centres/_search
+{
+  "query": {
+    "geo_distance": {
+      "distance": "1km",
+      "geocode": {
+        "lat": -37.8138932,
+        "lon": 144.9611874
+      }
+    }
+  }
+}
+
+# Sort by distance
+GET /childcare-centres/_search
+{
+  "query": {
+    "match_all": {}
+  },
+  "sort": [
+    {
+      "_geo_distance": {
+      "geocode": {
+        "lat": -37.8138932,
+        "lon": 144.9611874
+      },
+        "order": "asc",
+        "unit": "m"
+      }
+    }
+  ]
+}
+```
+
+`
+
+
+
 ## If not using Docker
 
 You will need to have installed Logstash.
