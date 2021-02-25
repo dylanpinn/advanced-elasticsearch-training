@@ -105,3 +105,23 @@ GET /childcare-centres/_search
   }
 }
 ```
+
+
+```
+GET /childcare-queries/_search
+{
+  "query": {
+    "percolate": {
+      "field": "saved_query",
+      "document": {
+        "name": "Billy Goat's Child Care",
+        "contact_ph": "03 9999 2222",
+        "geocode": {
+          "lat": -37.80932522,
+          "lon": 144.96026152
+        }
+      }
+    }
+  }
+}
+```
